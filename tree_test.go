@@ -5,7 +5,7 @@ import (
 )
 
 func TestTreeShouldBeCreatedWithNilValues(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	if tree.root != nil {
 		t.Fatal("tree was not created with nil root")
@@ -17,7 +17,7 @@ func TestTreeShouldBeCreatedWithNilValues(t *testing.T) {
 }
 
 func TestRootAndCurrentShouldPointToSameObjectWhenAddFirstTime(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 
@@ -31,7 +31,7 @@ func TestRootAndCurrentShouldPointToSameObjectWhenAddFirstTime(t *testing.T) {
 }
 
 func TestRootShouldBeTheSameWhenAddingMoreThanOne(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 
@@ -50,7 +50,7 @@ func TestRootShouldBeTheSameWhenAddingMoreThanOne(t *testing.T) {
 }
 
 func TestCurrentShouldBeLastItemAdded(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -66,7 +66,7 @@ func TestCurrentShouldBeLastItemAdded(t *testing.T) {
 }
 
 func TestAddMiddle(t *testing.T) {
-	tree := CreateTree[float64]()
+	tree := Create[float64]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -94,7 +94,7 @@ func TestAddMiddle(t *testing.T) {
 }
 
 func TestAddBeginning(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -117,7 +117,7 @@ func TestAddBeginning(t *testing.T) {
 }
 
 func TestCurrentShouldHaveNextNilWhenAddingLast(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -132,7 +132,7 @@ func TestCurrentShouldHaveNextNilWhenAddingLast(t *testing.T) {
 }
 
 func TestRootPrevShouldBeNil(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -147,7 +147,7 @@ func TestRootPrevShouldBeNil(t *testing.T) {
 }
 
 func TestShouldReturnPrevCorrectly(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -167,7 +167,7 @@ func TestShouldReturnPrevCorrectly(t *testing.T) {
 }
 
 func TestShouldReturnErrorWhenDoesNotHavePrevAnymore(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -197,7 +197,7 @@ func TestShouldReturnErrorWhenDoesNotHavePrevAnymore(t *testing.T) {
 }
 
 func TestShouldReturnNextCorrectly(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -221,7 +221,7 @@ func TestShouldReturnNextCorrectly(t *testing.T) {
 }
 
 func TestShouldReturnErrorWhenDoesNotHaveNextAnymore(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -247,7 +247,7 @@ func TestShouldReturnErrorWhenDoesNotHaveNextAnymore(t *testing.T) {
 }
 
 func TestHasPrev(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	r := tree.HasPrev()
 
@@ -273,7 +273,7 @@ func TestHasPrev(t *testing.T) {
 }
 
 func TestHasNext(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	r := tree.HasNext()
 
@@ -301,7 +301,7 @@ func TestHasNext(t *testing.T) {
 }
 
 func TestNode(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
@@ -313,7 +313,7 @@ func TestNode(t *testing.T) {
 }
 
 func TestSelectRoot(t *testing.T) {
-	tree := CreateTree[int]()
+	tree := Create[int]()
 
 	tree.Add(1)
 	tree.Add(2)
