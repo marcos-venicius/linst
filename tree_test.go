@@ -4,6 +4,24 @@ import (
 	"testing"
 )
 
+func TestIsEmpty(t *testing.T) {
+	tree := Create[int]()
+
+	r := tree.IsEmpty()
+
+	if !r {
+		t.Fatal("Expected: true, Received: false")
+	}
+
+	tree.Add(1)
+
+	r = tree.IsEmpty()
+
+	if r {
+		t.Fatal("Expected: false, Received: true")
+	}
+}
+
 func TestTreeShouldBeCreatedWithNilValues(t *testing.T) {
 	tree := Create[int]()
 

@@ -7,6 +7,10 @@ func Create[T any]() *Tree[T] {
 	}
 }
 
+func (t *Tree[T]) IsEmpty() bool {
+	return t.root == nil
+}
+
 func (t *Tree[T]) Add(data T) {
 	node := &Node[T]{
 		data: data,
