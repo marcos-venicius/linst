@@ -248,3 +248,33 @@ func TestHasNext(t *testing.T) {
 		t.Fatal("Expected: true, Received: false")
 	}
 }
+
+func TestNode(t *testing.T) {
+	tree := CreateTree[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	if tree.Node() != &*tree.current {
+		t.Fatalf("Expected: %p, Received: %p", &*tree.current, tree.Node())
+	}
+}
+
+func TestSelectRoot(t *testing.T) {
+	tree := CreateTree[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	tree.SelectRoot()
+
+	node := tree.Node()
+
+	if node == nil {
+		t.Fatal("Node should not be nil")
+	} else if node.data != 1 {
+		t.Fatalf("Expected: %d, Received: %d", 1, node.data)
+	}
+}

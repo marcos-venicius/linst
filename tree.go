@@ -68,6 +68,16 @@ func (t *Tree[T]) Next() (*Node[T], error) {
 	return t.current, nil
 }
 
+func (t *Tree[T]) Node() *Node[T] {
+	return t.current
+}
+
+func (t *Tree[T]) SelectRoot() {
+	if t.root != nil {
+		t.current = t.root
+	}
+}
+
 func (t *Tree[T]) HasNext() bool {
 	if t.current == nil {
 		return false
