@@ -18,6 +18,13 @@ func CreateTree[T any]() *Tree[T] {
 	}
 }
 
+func (t *Tree[T]) addBeginning(node *Node[T]) {
+	t.current.prev = node
+	node.next = t.current
+	t.current = node
+	t.root = node
+}
+
 func (t *Tree[T]) addFirst(node *Node[T]) {
 	t.root = node
 	t.current = node
@@ -28,6 +35,13 @@ func (t *Tree[T]) addLast(node *Node[T]) {
 	t.current.next = node
 
 	t.current = node
+}
+
+func (t *Tree[T]) addMiddle(node *Node[T]) {
+	node.prev = t.current.prev
+	t.current.prev.next = node
+	node.next = t.current
+	t.current.prev = node
 }
 
 func (t *Tree[T]) Add(data T) {
@@ -41,6 +55,14 @@ func (t *Tree[T]) Add(data T) {
 		t.addFirst(node)
 	} else if t.current.next == nil {
 		t.addLast(node)
+	} else if t.current.next != nil && t.current.prev != nil {
+		t.addMiddle(node)
+	} else if t.current.prev == nil {
+		t.addBeginning(node)
+	}
+
+	if t.root.prev != nil {
+		panic("invalid tree")
 	}
 }
 

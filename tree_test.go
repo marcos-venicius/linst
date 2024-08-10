@@ -65,6 +65,57 @@ func TestCurrentShouldBeLastItemAdded(t *testing.T) {
 	}
 }
 
+func TestAddMiddle(t *testing.T) {
+	tree := CreateTree[float64]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	tree.Prev()
+
+	tree.Add(1.5)
+
+	tree.SelectRoot()
+
+	v, _ := tree.Next()
+
+	if v.data != 1.5 {
+		t.Fatalf("Expected: 1.5, Received: %f", v.data)
+	}
+
+	if &*v.prev != tree.root {
+		t.Fatalf("%p != %p", &*v.prev, tree.root)
+	}
+
+	if &*v.next != tree.root.next.next {
+		t.Fatalf("%p != %p", &*v.prev, tree.root.next.next)
+	}
+}
+
+func TestAddBeginning(t *testing.T) {
+	tree := CreateTree[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+
+	tree.Prev()
+
+	tree.Add(0)
+
+	tree.SelectRoot()
+
+	node := tree.Node()
+
+	if node.data != 0 {
+		t.Fatalf("Expected: 0, Received: %d", node.data)
+	}
+
+	if &*tree.root != node {
+		t.Fatalf("%p != %p", &*tree.root, node)
+	}
+}
+
 func TestCurrentShouldHaveNextNilWhenAddingLast(t *testing.T) {
 	tree := CreateTree[int]()
 
