@@ -2,6 +2,12 @@
 
 A linked list with data
 
+## Install
+
+```
+go get github.com/marcos-venicius/linst
+```
+
 ## Methods
 
 - `Add` add a new node with the specified data and returns the node pointer
