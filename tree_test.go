@@ -347,3 +347,105 @@ func TestSelectRoot(t *testing.T) {
 		t.Fatalf("Expected: %d, Received: %d", 1, node.data)
 	}
 }
+
+func TestDeleteBeginning(t *testing.T) {
+	tree := Create[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	s := tree.Add(3)
+
+	tree.SelectRoot()
+
+	tree.Delete()
+
+	if tree.root.data != 2 {
+		t.Fatalf("Expected: 2, Received: %d", tree.root.data)
+	}
+
+	if tree.root.prev != nil {
+		t.Fatal("Root prev should always be nil")
+	}
+
+	if tree.root.next != s {
+		t.Fatal("Invalid tree")
+	}
+}
+
+func TestDeleteUnique(t *testing.T) {
+	tree := Create[int]()
+
+	tree.Add(1)
+
+	tree.Delete()
+
+	if tree.root != nil {
+		t.Fatal("root should be nil")
+	}
+}
+
+func TestDeleteMiddle(t *testing.T) {
+	tree := Create[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	v, _ := tree.Prev()
+
+	if v.data != 2 {
+		t.Fatal("invalid prev")
+	}
+
+	tree.Delete()
+
+	v = tree.Node()
+
+	if v.data != 3 {
+		t.Fatal("Expect 3")
+	}
+
+	if v.prev.data != 1 {
+		t.Fatal("invalid prev node")
+	}
+
+	if v.next != nil {
+		t.Fatal("invalid next node")
+	}
+}
+
+func TestDeleteEnd(t *testing.T) {
+	tree := Create[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	tree.Delete()
+
+	v := tree.Node()
+
+	if v.data != 2 {
+		t.Fatal("invalid selected node")
+	}
+
+	if v.next != nil {
+		t.Fatal("invalid next node")
+	}
+
+	if v.prev.data != 1 {
+		t.Fatal("invalid prev node")
+	}
+}
+
+func TestDeleteEmpty(t *testing.T) {
+	tree := Create[int]()
+
+	err := tree.Delete()
+
+	if err == nil {
+		t.Fatal("Expected error")
+	} else if err.Error() != "Tree is empty" {
+		t.Fatal("invalid error message")
+	}
+}
