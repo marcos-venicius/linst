@@ -1,7 +1,7 @@
 package linst
 
 type Node[T any] struct {
-	data T
+	Data T
 	prev *Node[T]
 	next *Node[T]
 }

@@ -14,7 +14,7 @@ func (t *Tree[T]) IsEmpty() bool {
 // adds a new node in the tree and return the pointer
 func (t *Tree[T]) Add(data T) *Node[T] {
 	node := &Node[T]{
-		data: data,
+		Data: data,
 		prev: nil,
 		next: nil,
 	}

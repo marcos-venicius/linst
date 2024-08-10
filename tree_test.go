@@ -98,8 +98,8 @@ func TestAddMiddle(t *testing.T) {
 
 	v, _ := tree.Next()
 
-	if v.data != 1.5 {
-		t.Fatalf("Expected: 1.5, Received: %f", v.data)
+	if v.Data != 1.5 {
+		t.Fatalf("Expected: 1.5, Received: %f", v.Data)
 	}
 
 	if &*v.prev != tree.root {
@@ -125,8 +125,8 @@ func TestAddBeginning(t *testing.T) {
 
 	node := tree.Node()
 
-	if node.data != 0 {
-		t.Fatalf("Expected: 0, Received: %d", node.data)
+	if node.Data != 0 {
+		t.Fatalf("Expected: 0, Received: %d", node.Data)
 	}
 
 	if &*tree.root != node {
@@ -173,14 +173,14 @@ func TestShouldReturnPrevCorrectly(t *testing.T) {
 
 	v, _ := tree.Prev()
 
-	if v.data != 2 {
-		t.Fatalf("Expected: 2, Received: %d", v.data)
+	if v.Data != 2 {
+		t.Fatalf("Expected: 2, Received: %d", v.Data)
 	}
 
 	v, _ = tree.Prev()
 
-	if v.data != 1 {
-		t.Fatalf("Expected: 1, Received: %d", v.data)
+	if v.Data != 1 {
+		t.Fatalf("Expected: 1, Received: %d", v.Data)
 	}
 }
 
@@ -227,14 +227,14 @@ func TestShouldReturnNextCorrectly(t *testing.T) {
 
 	v, _ := tree.Next()
 
-	if v.data != 2 {
-		t.Fatalf("Expected: 2, Received: %d", v.data)
+	if v.Data != 2 {
+		t.Fatalf("Expected: 2, Received: %d", v.Data)
 	}
 
 	v, _ = tree.Next()
 
-	if v.data != 3 {
-		t.Fatalf("Expected: 3, Received: %d", v.data)
+	if v.Data != 3 {
+		t.Fatalf("Expected: 3, Received: %d", v.Data)
 	}
 }
 
@@ -343,8 +343,8 @@ func TestSelectRoot(t *testing.T) {
 
 	if node == nil {
 		t.Fatal("Node should not be nil")
-	} else if node.data != 1 {
-		t.Fatalf("Expected: %d, Received: %d", 1, node.data)
+	} else if node.Data != 1 {
+		t.Fatalf("Expected: %d, Received: %d", 1, node.Data)
 	}
 }
 
@@ -359,8 +359,8 @@ func TestDeleteBeginning(t *testing.T) {
 
 	tree.Delete()
 
-	if tree.root.data != 2 {
-		t.Fatalf("Expected: 2, Received: %d", tree.root.data)
+	if tree.root.Data != 2 {
+		t.Fatalf("Expected: 2, Received: %d", tree.root.Data)
 	}
 
 	if tree.root.prev != nil {
@@ -393,7 +393,7 @@ func TestDeleteMiddle(t *testing.T) {
 
 	v, _ := tree.Prev()
 
-	if v.data != 2 {
+	if v.Data != 2 {
 		t.Fatal("invalid prev")
 	}
 
@@ -401,11 +401,11 @@ func TestDeleteMiddle(t *testing.T) {
 
 	v = tree.Node()
 
-	if v.data != 3 {
+	if v.Data != 3 {
 		t.Fatal("Expect 3")
 	}
 
-	if v.prev.data != 1 {
+	if v.prev.Data != 1 {
 		t.Fatal("invalid prev node")
 	}
 
@@ -425,7 +425,7 @@ func TestDeleteEnd(t *testing.T) {
 
 	v := tree.Node()
 
-	if v.data != 2 {
+	if v.Data != 2 {
 		t.Fatal("invalid selected node")
 	}
 
@@ -433,7 +433,7 @@ func TestDeleteEnd(t *testing.T) {
 		t.Fatal("invalid next node")
 	}
 
-	if v.prev.data != 1 {
+	if v.prev.Data != 1 {
 		t.Fatal("invalid prev node")
 	}
 }
