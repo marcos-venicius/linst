@@ -1,4 +1,4 @@
-package main
+package linst
 
 type NodeNotFoundError struct {
 	msg string

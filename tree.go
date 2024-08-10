@@ -1,4 +1,4 @@
-package main
+package linst
 
 func Create[T any]() *Tree[T] {
 	return &Tree[T]{

@@ -1,4 +1,4 @@
-package main
+package linst
 
 type Node[T any] struct {
 	data T

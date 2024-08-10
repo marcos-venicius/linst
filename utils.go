@@ -1,4 +1,4 @@
-package main
+package linst
 
 func (t *Tree[T]) addBeginning(node *Node[T]) {
 	t.current.prev = node
