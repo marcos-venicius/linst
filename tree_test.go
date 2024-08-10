@@ -144,3 +144,107 @@ func TestShouldReturnErrorWhenDoesNotHavePrevAnymore(t *testing.T) {
 		t.Fatalf("Expected: %v, Received: %v", expectedError, err.Error())
 	}
 }
+
+func TestShouldReturnNextCorrectly(t *testing.T) {
+	tree := CreateTree[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	tree.Prev()
+	tree.Prev()
+	tree.Prev()
+
+	v, _ := tree.Next()
+
+	if v.data != 2 {
+		t.Fatalf("Expected: 2, Received: %d", v.data)
+	}
+
+	v, _ = tree.Next()
+
+	if v.data != 3 {
+		t.Fatalf("Expected: 3, Received: %d", v.data)
+	}
+}
+
+func TestShouldReturnErrorWhenDoesNotHaveNextAnymore(t *testing.T) {
+	tree := CreateTree[int]()
+
+	tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	tree.Prev()
+
+	_, err := tree.Next()
+
+	if err != nil {
+		t.Fatal("Should not return error")
+	}
+
+	_, err = tree.Next()
+
+	expectedError := "next node not found"
+
+	if err == nil {
+		t.Fatal("Should return error")
+	} else if err.Error() != expectedError {
+		t.Fatalf("Expected: %v, Received: %v", expectedError, err.Error())
+	}
+}
+
+func TestHasPrev(t *testing.T) {
+	tree := CreateTree[int]()
+
+	r := tree.HasPrev()
+
+	if r {
+		t.Fatal("Expected: false, Received: true")
+	}
+
+	tree.Add(1)
+
+	r = tree.HasPrev()
+
+	if r {
+		t.Fatal("Expected: false, Received: true")
+	}
+
+	tree.Add(2)
+
+	r = tree.HasPrev()
+
+	if !r {
+		t.Fatal("Expected: true, Received: false")
+	}
+}
+
+func TestHasNext(t *testing.T) {
+	tree := CreateTree[int]()
+
+	r := tree.HasNext()
+
+	if r {
+		t.Fatal("Expected: false, Received: true")
+	}
+
+	tree.Add(1)
+
+	r = tree.HasNext()
+
+	if r {
+		t.Fatal("Expected: false, Received: true")
+	}
+
+	tree.Add(2)
+
+	tree.Prev()
+
+	r = tree.HasNext()
+
+	if !r {
+		t.Fatal("Expected: true, Received: false")
+	}
+}

@@ -55,3 +55,31 @@ func (t *Tree[T]) Prev() (*Node[T], error) {
 
 	return t.current, nil
 }
+
+func (t *Tree[T]) Next() (*Node[T], error) {
+	if t.current.next == nil {
+		return nil, &NodeNotFound{
+			msg: "next node not found",
+		}
+	}
+
+	t.current = t.current.next
+
+	return t.current, nil
+}
+
+func (t *Tree[T]) HasNext() bool {
+	if t.current == nil {
+		return false
+	}
+
+	return t.current.next != nil
+}
+
+func (t *Tree[T]) HasPrev() bool {
+	if t.current == nil {
+		return false
+	}
+
+	return t.current.prev != nil
+}
