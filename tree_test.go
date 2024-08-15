@@ -330,6 +330,19 @@ func TestNode(t *testing.T) {
 	}
 }
 
+func TestRoot(t *testing.T) {
+
+	tree := Create[int]()
+
+	root := tree.Add(1)
+	tree.Add(2)
+	tree.Add(3)
+
+	if tree.Root() != &*root {
+		t.Fatal("invalid root")
+	}
+}
+
 func TestSelectRoot(t *testing.T) {
 	tree := Create[int]()
 

@@ -98,11 +98,16 @@ func (t *Tree[T]) Node() *Node[T] {
 	return t.current
 }
 
-// select root node
-func (t *Tree[T]) SelectRoot() {
+func (t *Tree[T]) Root() *Node[T] {
+	return t.root
+}
+
+func (t *Tree[T]) SelectRoot() *Node[T] {
 	if t.root != nil {
 		t.current = t.root
 	}
+
+	return t.current
 }
 
 func (t *Tree[T]) HasNext() bool {
